@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bend It Right</title>
+  <meta name="description" content="Workout rep counting and yoga pose timing that runs entirely in your browser.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Bend It Right</h1>
+    <p>Workout rep counting and yoga pose timing. Everything runs in your browser; your camera video never leaves your device.</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-workout" aria-selected="true" data-mode="workout">Workout Tracker</button>
+    <button role="tab" id="tab-yoga" aria-selected="false" data-mode="yoga">Yoga Detection</button>
+  </nav>
+
+  <main class="layout">
+    <section class="stage-col">
+      <div class="stage" id="stage">
+        <video id="video" playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <div class="placeholder" id="placeholder">
+          <p>Start your webcam or upload a video.</p>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="btn-webcam" class="primary">Start webcam</button>
+        <label class="button" for="file-input">Upload video</label>
+        <input type="file" id="file-input" accept="video/*" hidden>
+        <button id="btn-stop" disabled>Stop</button>
+      </div>
+      <p class="status" id="status" role="status">Ready.</p>
+    </section>
+
+    <aside class="panel">
+      <div id="panel-workout">
+        <h2>Pick an exercise</h2>
+        <div class="cards" id="exercise-cards"></div>
+        <button id="btn-reset-workout">Reset counts</button>
+        <p class="tip">Keep your whole body in frame with good lighting. For squats, place the camera side-on at waist height.</p>
+      </div>
+      <div id="panel-yoga" hidden>
+        <h2>Time held per pose</h2>
+        <div class="cards" id="pose-cards"></div>
+        <button id="btn-reset-yoga">Reset timers</button>
+        <p class="tip">A pose's timer runs while the model is over 80% confident you're holding it. The first load downloads a 38&nbsp;MB model.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    CSC-340 Artificial Intelligence project by Akari Kyaw Thein, Ant Bone Kyaw, Han Win Aung, Nay Chi Lin Lei and Thaw Zin Moe Myint.
+    Pose estimation by MediaPipe; yoga model is YOLO11s-pose fine-tuned on yoga poses.
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

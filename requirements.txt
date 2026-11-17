@@ -1,0 +1,9 @@
+# Desktop app (main_GUI.py). CPU-only PyTorch keeps the install smaller.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1
+torchvision==0.29.2
+ultralytics==8.4.215
+mediapipe==0.10.21
+numpy==1.26.4
+opencv-python==4.11.0.86
+pillow

@@ -36,10 +36,38 @@ Team Members: Akari Kyaw Thein, Ant Bone Kyaw, Han Win Aung, Nay Chi Lin Lei, Th
     cd Bend-It-Right
     ```
 
-2. **Run the application**
+2. **Install the dependencies** (Python 3.10–3.12; MediaPipe's `solutions` API is not available on 3.13)
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Run the application**
     ```bash
     python main_GUI.py
     ```
+
+### Web version (runs in the browser)
+
+The `web/` folder is a browser version of the app. Both models run on the visitor's device
+(the yoga model via ONNX Runtime Web, workouts via MediaPipe), so it can be hosted for free as static files
+and camera video never leaves the device. `web/model/yoga.onnx` is `models/best.pt` exported with
+`YOLO("models/best.pt").export(format="onnx", imgsz=640, nms=True)`.
+
+Try it locally (webcam access needs `localhost` or HTTPS):
+
+```bash
+python3 -m http.server 8000 --directory web
+```
+
+Then open http://localhost:8000. Adding `?mode=yoga&video=<url>` opens a tab and plays a video from a URL.
+
+Publish it as a free static Hugging Face Space:
+
+```bash
+pip install huggingface_hub
+hf auth login
+python deploy_to_hf.py <your-hf-username>/bend-it-right
+```
 
 ---
 
